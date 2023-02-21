@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Client;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all()->pluck('username', 'id');
+        $clients = Client::all()->pluck('company_name', 'id');
+        
+        return view('projects.create', compact('users', 'clients'));
     }
 
     /**
@@ -35,7 +40,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

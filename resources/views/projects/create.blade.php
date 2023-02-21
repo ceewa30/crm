@@ -1,8 +1,70 @@
-@extends('layouts.base')
+<x-guest-layout>
+    <form method="POST" action="{{ route('projects.store') }}">
+        @csrf
 
-@section('name', 'siva')
+        <!-- Project Title -->
+        <div class="mt-4">
+            <x-input-label for="project_title" :value="__('Project Title')" />
+            <x-text-input id="project_title" class="block mt-1 w-full" type="text" name="project_title" :value="old('project_title')" required autofocus />
+            <x-input-error :messages="$errors->get('project_title')" class="mt-2" />
+        </div>
 
-@section('content')
-    <h1 class="text-4xl fond-bold">Clients - Create</h1>
-    <p>CSS for the sake of simplicity and included the tailwind CDN link here. However, you don't need to know Tailwind CSS to understand the concept in this video. To begin with, we have the entire mockup within the home.play. PHP, but if we need to add another view like an about page with a similar nav bar and content section repeating this entire code is not a good idea. So let's create a layouts folder within views and create a file based.blade.PHP, which will serve as our base layout. Copy the entire a code from the home view, paste it into the blade file. The content that would change in other pages is this part, so cut it out from here, and paste it into the home view replacing all of this code. We need to define this as a section, using the section directive in blade. And this would be the name of the section, so let's call it content. And this end section will be at the end of the section. This blade directives was auto completed because I am using some extensions in vs code like this Laravel Blade Snippets and Laravel Blade Spacer to add spaces automatically when I type double curly braces. I recommend installing both of these extensions. Now back to our code, so we have added this within the section content. We also need to specify which layout this file is inheriting, and that can be done</p>
-@endsection
+        <!-- Description -->
+        <div class="mt-4">
+            <x-input-label for="description" :value="__('Description')" />
+            <x-textarea name="description" field="text" class="block mt-1 w-full" rows="10" placeholder="Project details ..." :value="@old('description')"></x-textarea>
+            <x-input-error :messages="$errors->get('description')" class="mt-2" />
+        </div>
+        <!-- Deadlline -->
+        <div class="mt-4">
+            <x-input-label for="deadlline" :value="__('Deadlline')" />
+            <x-date-input id="deadline" class="block mt-1 w-full" type="date" name="deadline" :value="old('deadline')" required autofocus />
+            <x-input-error :messages="$errors->get('deadline')" class="mt-2" />
+        </div>
+
+         <!-- Assigned User -->
+         <div class="mt-4">
+            <x-input-label for="user_id" :value="__('Assigned User')" />
+            <select class="block mt-1 w-full" name="user_id" id="user_id" required>
+                @foreach($users as $id => $entry)
+                    <option
+                    value="{{ $id }}" {{ old('user_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
+        </div>
+
+         <!-- Assigned Client -->
+         <div class="mt-4">
+            <x-input-label for="client_id" :value="__('Assigned Client')" />
+            <select class="block mt-1 w-full" name="client_id" id="client_id" required>
+                @foreach($clients as $id => $entry)
+                    <option
+                    value="{{ $id }}" {{ old('client_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('client_id')" class="mt-2" />
+        </div>
+
+        <!-- Status -->
+        <div class="mt-4">
+            <x-input-label for="status" :value="__('Status')" />
+            <select class="block mt-1 w-full" name="status" id="status" required>
+                @foreach(App\Models\Project::STATUS as $status)
+                    <option
+                        value="{{ $status }}" {{ old('status') == $status ? 'selected' : '' }}>{{ ucfirst($status) }}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('client_state')" class="mt-2" />
+        </div>
+
+        <div class="flex items-center justify-end mt-4">
+            <a class="btn-back btn-sm" href="{{ route('projects.index') }}">
+                {{ __('Back') }}
+            </a>
+            <x-primary-button class="ml-4">
+                {{ __('Create Project') }}
+            </x-primary-button>
+        </div>
+    </form>
+</x-guest-layout>
