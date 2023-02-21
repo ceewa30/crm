@@ -25,24 +25,14 @@
          <!-- Assigned User -->
          <div class="mt-4">
             <x-input-label for="user_id" :value="__('Assigned User')" />
-            <select class="block mt-1 w-full" name="user_id" id="user_id" required>
-                @foreach($users as $id => $entry)
-                    <option
-                    value="{{ $id }}" {{ old('user_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                @endforeach
-            </select>
+            <x-select-input id="user_id" class="block mt-1 w-full" type="text" :options="$users" name="user_id" required />   
             <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
         </div>
 
          <!-- Assigned Client -->
          <div class="mt-4">
             <x-input-label for="client_id" :value="__('Assigned Client')" />
-            <select class="block mt-1 w-full" name="client_id" id="client_id" required>
-                @foreach($clients as $id => $entry)
-                    <option
-                    value="{{ $id }}" {{ old('client_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                @endforeach
-            </select>
+            <x-select-input id="client_id" class="block mt-1 w-full" type="text" :options="$clients" name="client_id" required />   
             <x-input-error :messages="$errors->get('client_id')" class="mt-2" />
         </div>
 

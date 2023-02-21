@@ -28,6 +28,7 @@ class ProjectController extends Controller
     {
         $users = User::all()->pluck('username', 'id');
         $clients = Client::all()->pluck('company_name', 'id');
+        // $status = App\Models\Project::STATUS as $status;
         
         return view('projects.create', compact('users', 'clients'));
     }
