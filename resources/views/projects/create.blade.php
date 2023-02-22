@@ -39,12 +39,7 @@
         <!-- Status -->
         <div class="mt-4">
             <x-input-label for="status" :value="__('Status')" />
-            <select class="block mt-1 w-full" name="status" id="status" required>
-                @foreach(App\Models\Project::STATUS as $status)
-                    <option
-                        value="{{ $status }}" {{ old('status') == $status ? 'selected' : '' }}>{{ ucfirst($status) }}</option>
-                @endforeach
-            </select>
+            <x-select-input id="status" class="block mt-1 w-full" type="text" :options="$status=App\Models\Project::STATUS" name="status" required />
             <x-input-error :messages="$errors->get('client_state')" class="mt-2" />
         </div>
 
