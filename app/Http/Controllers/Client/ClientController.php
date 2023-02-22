@@ -43,14 +43,14 @@ class ClientController extends Controller
         // dd($request);
         $request->validate([
             'contact_name' => 'required|max:120',
-            'contact_email' => 'required|email',
-            'contact_phone_number' => 'required',
-            'company_name' => 'required',
-            'company_address' => 'required',
-            'company_city' => 'required',
-            'company_state' => 'required',
-            'company_zip' => 'required',
-            'company_vat' => 'required'
+            'contact_email' => 'required|email|max:255',
+            'contact_phone_number' => 'required|numeric|min:10',
+            'company_name' => 'required|max:255',
+            'company_address' => 'required|max:255',
+            'company_city' => 'required|max:100',
+            'company_state' => 'required|max:100',
+            'company_zip' => 'required|numeric|min:5',
+            'company_vat' => 'required|min:5'
         ]);
 
         Client::create([
@@ -114,14 +114,14 @@ class ClientController extends Controller
 
         $request->validate([
             'contact_name' => 'required|max:120',
-            'contact_email' => 'required|email',
-            'contact_phone_number' => 'required',
-            'company_name' => 'required',
-            'company_address' => 'required',
-            'company_city' => 'required',
-            'company_state' => 'required',
-            'company_zip' => 'required',
-            'company_vat' => 'required'
+            'contact_email' => 'required|email|max:255',
+            'contact_phone_number' => 'required|numeric|min:10',
+            'company_name' => 'required|max:255',
+            'company_address' => 'required|max:255',
+            'company_city' => 'required|max:100',
+            'company_state' => 'required|max:100',
+            'company_zip' => 'required|numeric|min:5',
+            'company_vat' => 'required|min:5'
         ]);
 
         $client->update([

@@ -58,6 +58,7 @@ class UserProfileController extends Controller
     public function edit(UserProfile $userProfile)
     {
         //
+        dd($userProfile);
     }
 
     /**

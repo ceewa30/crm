@@ -45,9 +45,9 @@ class ProjectController extends Controller
     {
         // dd($request);
         $request->validate([
-            'title' => 'required|max:120',
-            'description' => 'required',
-            'deadline' => 'required',
+            'title' => 'required|max:255',
+            'description' => 'required|min:100',
+            'deadline' => 'required|date',
             'user_id' => 'required',
             'client_id' => 'required',
             'status' => 'required'
@@ -101,9 +101,9 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $request->validate([
-        'title' => 'required|max:120',
-        'description' => 'required',
-        'deadline' => 'required',
+        'title' => 'required|max:255',
+        'description' => 'required|min:100',
+        'deadline' => 'required|date',
         'user_id' => 'required',
         'client_id' => 'required',
         'status' => 'required'

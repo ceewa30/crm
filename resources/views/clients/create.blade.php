@@ -18,7 +18,7 @@
         <!-- Contact Phone Number -->
         <div class="mt-4">
             <x-input-label for="contact_phone_number" :value="__('Contact Phone Number')" />
-            <x-text-input id="contact_phone_number" class="block mt-1 w-full" type="text" name="contact_phone_number" :value="old('contact_phone_number')" required autofocus />
+            <x-text-input id="contact_phone_number" class="block mt-1 w-full" type="number" name="contact_phone_number" :value="old('contact_phone_number')" required autofocus />
             <x-input-error :messages="$errors->get('contact_phone_number')" class="mt-2" />
         </div>
 
@@ -53,7 +53,7 @@
          <!-- Company Zip Code -->
          <div class="mt-4">
             <x-input-label for="company_zip" :value="__('Company Zip')" />
-            <x-text-input id="company_zip" class="block mt-1 w-full" type="text" name="company_zip" :value="old('company_zip')" required />
+            <x-text-input id="company_zip" class="block mt-1 w-full" type="number" name="company_zip" :value="old('company_zip')" required />
             <x-input-error :messages="$errors->get('company_zip')" class="mt-2" />
         </div>
 
