@@ -45,7 +45,7 @@ class ProjectController extends Controller
     {
         // dd($request);
         $request->validate([
-            'project_title' => 'required|max:120',
+            'title' => 'required|max:120',
             'description' => 'required',
             'deadline' => 'required',
             'user_id' => 'required',
@@ -55,7 +55,7 @@ class ProjectController extends Controller
 
         Project::create([
             'uuid' => Str::uuid(),
-            'title' => $request->project_title,
+            'title' => $request->title,
             'description' => $request->description,
             'deadline' => $request->deadline,
             'user_id' => $request->user_id,
@@ -74,7 +74,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('projects.show',compact('project'));
     }
 
     /**
@@ -85,7 +85,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $users = User::all()->pluck('username', 'id');
+        $clients = Client::all()->pluck('company_name', 'id');
+
+        return view('projects.edit',compact('project', 'users', 'clients'));
     }
 
     /**
@@ -97,7 +100,25 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $request->validate([
+        'title' => 'required|max:120',
+        'description' => 'required',
+        'deadline' => 'required',
+        'user_id' => 'required',
+        'client_id' => 'required',
+        'status' => 'required'
+        ]);
+
+        $project->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'deadline' => $request->deadline,
+            'user_id' => $request->user_id,
+            'client_id' => $request->client_id,
+            'status' => $request->status
+        ]);
+
+        return to_route('projects.show', $project)->with('success', 'Project Updated Successfully!');
     }
 
     /**
@@ -108,6 +129,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return to_route('projects.index')->with('success', 'Client Move to Trash success');
     }
 }

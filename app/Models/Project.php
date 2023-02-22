@@ -12,7 +12,13 @@ class Project extends Model
 
     protected $guarded = [];
 
-    public const STATUS = ['open', 'in progress', 'blocked', 'cancelled', 'completed'];
+    public const STATUS = [
+        'open' => 'open', 
+        'in progress' => 'in progress', 
+        'blocked' => 'blocked', 
+        'cancelled' => 'cancelled', 
+        'completed' => 'completed'
+    ];
 
     public function user() {
         return $this->belongsTo(User::class);

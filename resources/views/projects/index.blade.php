@@ -52,31 +52,32 @@
                                 {{ $project->title }}
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {{ $project->description }}
+                                {{ $project->description }} {{ $project->client_id }}
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 {{ $project->deadline }}
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {{ $project->status }}
+                                {{ strtoupper($project->status) }}
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                <table>
                                 <tr>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         <a 
-                                            
+                                            @if(request()->routeIs('projects.index'))
                                                 href="{{ route('projects.show', $project) }}"
-                                             alt="Show"
+                                            @endif
+                                            alt="Show"
                                         ><svg aria-hidden="true" focusable="false" data-prefix="fa" data-icon="eye-solid" class="w-7 h-7 fill-green-700 hover:fill-green-300" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                                             <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
                                             <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></a>
+                                        </a>
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         <a 
                                             @if(request()->routeIs('projects.index'))
                                                 href="{{ route('projects.edit', $project) }}"
-                                            
                                             @endif
                                         ><svg aria-hidden="true" focusable="false" data-prefix="fa" data-icon="bars-solid" class="w-7 h-7 fill-blue-700 hover:fill-blue-300" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
                                             <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -106,7 +107,7 @@
                         @empty
                             @if(request()->routeIs('projects.index'))
                                 <div class="p-6 text-gray-900">
-                                    <p>You have no clients yet.</p>
+                                    <p>You have no projects yet.</p>
                                 </div>
                             @else
                                 <div class="p-6 text-gray-900">

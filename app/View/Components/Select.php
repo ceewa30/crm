@@ -25,4 +25,10 @@ class Select extends Component
     {
         return view('components.select');
     }
+
+    // public function isSelected($option)
+    // {
+    //     return $option == old($this->label, $this->value) ? 'selected' : '';
+    //     // return $option === $this->selected;
+    // }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Show Contact') }}
+            {{ __('Show Client') }}
         </h2>
     </x-slot>
 
@@ -15,9 +15,9 @@
             </a>
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <table class="min-w-full">
-                      <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                         <th scope="col" class="text-sm font-small text-gray-900 px-6 py-4 text-left">
-                          Contact Name
+                            Contact Name
                         </th>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {{ $client->contact_name }}
@@ -81,13 +81,13 @@
                     </tr>
                     <tr class="bg-white border-t transition duration-300 ease-in-out hover:bg-gray-100">
                         <th scope="col" class="text-sm font-small text-gray-900 px-6 py-4 text-left">
-                          VAT
+                            VAT
                         </th>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {{ $client->company_vat }}
                         </td>
-                      </tr>
-                  </table>
+                    </tr>
+                </table>
             </div>
             </div>
         </div>
