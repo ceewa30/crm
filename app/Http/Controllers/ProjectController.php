@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Project;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -16,7 +17,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('projects/index');
+        $projects = Project::orderBy('id')->paginate(5);
+        return view('projects.index')->with('projects', $projects);
     }
 
     /**
@@ -41,7 +43,27 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
+        $request->validate([
+            'project_title' => 'required|max:120',
+            'description' => 'required',
+            'deadline' => 'required',
+            'user_id' => 'required',
+            'client_id' => 'required',
+            'status' => 'required'
+        ]);
+
+        Project::create([
+            'uuid' => Str::uuid(),
+            'title' => $request->project_title,
+            'description' => $request->description,
+            'deadline' => $request->deadline,
+            'user_id' => $request->user_id,
+            'client_id' => $request->client_id,
+            'status' => $request->status
+        ]);
+
+        return to_route('projects.index');
     }
 
     /**

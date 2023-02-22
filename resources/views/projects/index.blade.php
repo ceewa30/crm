@@ -22,19 +22,16 @@
                         <thead class="bg-white border-b">
                           <tr>
                             <th scope="col" class="text-sm font-small text-gray-900 px-6 py-4 text-left">
-                                Client Name
+                                Project Title
                             </th>
                             <th scope="col" class="text-sm font-small text-gray-900 px-6 py-4 text-left">
-                                VAT
+                                Description
                             </th>
                             <th scope="col" class="text-sm font-small text-gray-900 px-6 py-4 text-left">
-                                Client Email
+                                Deadline
                             </th>
                             <th scope="col" class="text-sm font-small text-gray-900 px-6 py-4 text-left">
-                                Client Phone Number
-                            </th>
-                            <th scope="col" class="text-sm font-small text-gray-900 px-6 py-4 text-left">
-                                Client Address
+                                Status
                             </th>
                             <th class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 <table>
@@ -47,24 +44,21 @@
                             </th>
                           </tr>
                         </thead>
-                        {{-- @forelse ($clients as $client)
+                        @forelse ($projects as $project)
                         <tbody>
                           <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                            
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {{ $client->client_name }}
+                                {{ $project->title }}
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {{ $client->client_vat }}
+                                {{ $project->description }}
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {{ $client->client_email }}
+                                {{ $project->deadline }}
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {{ $client->client_phone_number }}
-                            </td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {{ $client->client_address }}, {{ $client->client_city }}, {{ $client->client_state }}, {{ $client->client_zip }}
+                                {{ $project->status }}
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                <table>
@@ -72,7 +66,7 @@
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         <a 
                                             
-                                                href="{{ route('clients.show', $client) }}"
+                                                href="{{ route('projects.show', $project) }}"
                                              alt="Show"
                                         ><svg aria-hidden="true" focusable="false" data-prefix="fa" data-icon="eye-solid" class="w-7 h-7 fill-green-700 hover:fill-green-300" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                                             <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -80,8 +74,8 @@
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         <a 
-                                            @if(request()->routeIs('clients.index'))
-                                                href="{{ route('clients.edit', $client) }}"
+                                            @if(request()->routeIs('projects.index'))
+                                                href="{{ route('projects.edit', $project) }}"
                                             
                                             @endif
                                         ><svg aria-hidden="true" focusable="false" data-prefix="fa" data-icon="bars-solid" class="w-7 h-7 fill-blue-700 hover:fill-blue-300" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
@@ -91,8 +85,8 @@
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         
-                                            @if(request()->routeIs('clients.index'))
-                                                <form action="{{ route('clients.destroy', $client) }}" method="POST">
+                                            @if(request()->routeIs('projects.index'))
+                                                <form action="{{ route('projects.destroy', $project) }}" method="POST">
                                                     @method('delete')
                                                     @csrf
                                                     <button type="submit">
@@ -110,7 +104,7 @@
                           </tr>
                         </tbody>
                         @empty
-                            @if(request()->routeIs('clients.index'))
+                            @if(request()->routeIs('projects.index'))
                                 <div class="p-6 text-gray-900">
                                     <p>You have no clients yet.</p>
                                 </div>
@@ -120,13 +114,13 @@
                                 </div>
                             @endif
                     
-                        @endforelse --}}
+                        @endforelse
                       </table>
                     </div>
                   </div>
                 </div>
               </div>
-            {{-- {{  $projects->links() }} --}}
+            {{  $projects->links() }}
         </div>
     </div>
 </x-app-layout>
